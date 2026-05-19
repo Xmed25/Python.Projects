@@ -1,0 +1,105 @@
+import time
+import random
+
+person={} 
+
+def pre(func):
+    def wrapper(*arg,**kwargs):
+        print("SIGN UP\n")
+        result=func(*arg,**kwargs)
+        print("Thank You for Signing up")
+        return result
+    return wrapper
+
+def confirm(password):
+        conf=input("Confirm Password: ")
+        if conf==password:
+            print("Password Confirmed !")
+            return True
+        else:
+            print("confirm password does not match")
+            return False 
+            
+class Signup:
+    def __init__(self,user,password,email,nickname,dob,gender):
+        self.user=user
+        self.__password=password
+        self.email=email
+        self.nickname=nickname
+        self.dob=dob
+        self.gender=gender
+    
+    def displaying(self):
+        print(f"""
+        USER ID :{self.user}
+        Password:{len(self.__password)*'*'}
+        Email:{len(self.email[:5])*'*'+self.email[5:-1]}
+        Nickname:{self.nickname}
+              """)
+@pre
+def inputs():
+    while True:
+        user=input("USER ID: ").strip().lower()
+        password=input("Password :").strip()
+        email=input("Email: ")
+        nickname=input("Nickname: ").strip()
+        dob=input("Date of birth: ")
+        gender=input("Female - Male (F/M): ").strip()
+        
+        if gender.lower()not in ["f","m"]:
+            print("Please Enter F Or M ")
+            continue
+
+        if not all([user, password, email, nickname, dob, gender]):
+            print("\nPlease Fill in the blanks !\n")
+            continue
+            
+        
+        if not confirm(password):
+            continue
+        person[user]=password
+        return user,password,email,nickname,dob,gender
+
+
+# creating objects 
+data=inputs()
+user=Signup(*data)
+print("wait a second...")
+time.sleep(3)
+#Login 
+#Send a random code to email 
+def code ():
+    return random.randint(100000,1000000)
+
+
+def login():
+    while True:
+        print("                Log In                 ")
+        inp_user=input("Enter User ID : ")
+        inp_pass=input("Password: ")
+        if inp_user not in person:
+            print("User Not Found !")
+            print("Please Try again !")
+            continue
+        elif person[inp_user] != inp_pass:
+            print("Invalid Password !")
+            continue
+
+        else:
+            verify=code()
+            print("Verification code sent to email ")
+            print(verify)
+            print("--------")
+            rand=int(input("Enter a Verification Code : "))
+            if rand==verify:
+                print("Succssefully  Verified ! ")
+                print("Wait a second.....")
+                time.sleep(3)
+                print("Welocme To Z8Game")
+                print("-"*5)
+                return user.displaying()
+            else:
+                print("Invalid Verified !")
+                continue
+            
+login()
