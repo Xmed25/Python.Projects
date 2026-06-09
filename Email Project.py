@@ -1,19 +1,5 @@
-# Create an email and log in
-#Displaying Sign up 
-#USER ID
-#PASS
-#EMAIL
-#NICKNAME
-#DATE OF BIRTH
-#GENDER
-# BY CREATING AN ACCOUNT YOU AGREE TO Z8Games
-# terms of use and privacy policy 
-# creat account
-# GUI to new gui (confirmed)
-# Login
-# GUI LOGIN 
-# WELCOME ^-^
-# ==================================================
+# Creating email with log in
+
 import tkinter as tk
 from tkinter import messagebox
 import random
