@@ -234,7 +234,9 @@ def displayingLogForPay(invoice):
                 print("Invalid Code")
                 continue
             if verification == rand:
-                print("\n===== CART =====")
+                print("\n==========")
+                print("CART")
+                print("==========")
                 for product, qty in addingcart.cart:
                     print(f"{product.product} x{qty}")
                     print(f"\nTotal Price : ${invoice.total()}")
@@ -263,7 +265,7 @@ def DisplayingLoginForEmp():
     while True:
         name=input("Name: ")
         password=input("Password: ")
-        if name.lower() in Employees and Employees[name.capitalize()] == password:
+        if name.lower() in Employees and Employees[name.lower()] == password:
             print(f"Hi {name} !")
         else:
             print("Invalid Name or Passowrd")
